@@ -1,1 +1,8 @@
-
+<div class="'left-panel">
+  <app-user
+    *ngFor="let user of users; index as i"
+    [user]="user"
+    [selected]="selectedUser == user"
+    (click)="onSelectUser(user)"
+  ></app-user>
+</div>
