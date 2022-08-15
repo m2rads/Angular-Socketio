@@ -3,4 +3,5 @@ export interface User {
   self: Boolean;
   connected: Boolean;
   hasNewMessages: Boolean;
+  messages: any;
 }

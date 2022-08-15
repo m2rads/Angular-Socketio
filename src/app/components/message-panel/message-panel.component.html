@@ -4,7 +4,21 @@
       user.username
     }}</app-status-icon>
   </div>
-  <ul class="messages"></ul>
+  <ul class="messages">
+    <li *ngFor="let message of user.messages; index as i" class="message">
+      <div *ngIf="displaySender(message, i)" class="sender">
+        {{ message.fromSelf ? "(yourself)" : user.username }}
+      </div>
+      {{ message.content }}
+    </li>
+  </ul>
 
-  <form class="form" (submit)="onSubmit()"></form>
+  <form class="form" (submit)="onSubmit()">
+    <textarea
+      name="input"
+      placeholder="Type a message..."
+      class="input"
+    ></textarea>
+    <button [disabled]="!isValid" class="send-button">Send</button>
+  </form>
 </div>
