@@ -22,7 +22,7 @@ export class PickUsernameComponent implements OnInit {
       'You have successfully picked a name',
       this.singupForm.value.name
     );
-    this.socket.emit('input', this.singupForm.value.name);
+    // this.socket.emit('input', this.singupForm.value.name);
     this.singupForm.reset();
   }
 }
