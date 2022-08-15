@@ -1,0 +1,10 @@
+<div>
+  <div class="header">
+    <app-status-icon [connected]="user.connected">{{
+      user.username
+    }}</app-status-icon>
+  </div>
+  <ul class="messages"></ul>
+
+  <form class="form" (submit)="onSubmit()"></form>
+</div>

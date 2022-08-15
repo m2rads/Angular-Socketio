@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { ChatComponent } from './components/chat/chat.component';
 import { UserComponent } from './components/user/user.component';
 import { StatusIconComponent } from './components/status-icon/status-icon.component';
+import { MessagePanelComponent } from './components/message-panel/message-panel.component';
 
 const config: SocketIoConfig = {
   url: environment.socketUrl, // socket server url;
@@ -25,6 +26,7 @@ const config: SocketIoConfig = {
     ChatComponent,
     UserComponent,
     StatusIconComponent,
+    MessagePanelComponent,
   ],
   imports: [
     BrowserModule,

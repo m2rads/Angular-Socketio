@@ -1,12 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-
-interface User {
-  username: String;
-  self: Boolean;
-  connected: Boolean;
-  hasNewMessages: Boolean;
-}
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-user',
