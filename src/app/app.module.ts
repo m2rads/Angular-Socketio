@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { PickUsernameComponent } from './components/pick-username/pick-username.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
-import { ChatComponent } from './chat/chat.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 const config: SocketIoConfig = {
   url: environment.socketUrl, // socket server url;
