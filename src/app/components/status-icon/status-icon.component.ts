@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-status-icon',
@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status-icon.component.css'],
 })
 export class StatusIconComponent implements OnInit {
-  connected: Boolean;
-  constructor() {
-    this.connected = false;
-  }
+  @Input() connected: any;
+
+  constructor() {}
 
   ngOnInit(): void {}
 }

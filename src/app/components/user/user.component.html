@@ -1,0 +1,9 @@
+<div class="user" (click)="onClick()" [class]="{ selected: selected }">
+  <div class="name">
+    {{ user.username }} {{ user.self ? " (yourself)" : "" }}
+  </div>
+  <div class="status">
+    <app-status-icon [connected]="user.connected">{{ status }}</app-status-icon>
+  </div>
+  <div *ngIf="user.hasNewMessages" class="new-messages">!</div>
+</div>
