@@ -1,0 +1,12 @@
+<div class="pick-username">
+  <h2>Pick a Username...</h2>
+  <form [formGroup]="singupForm" (ngSubmit)="onSubmit()">
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      placeholder="Your username..."
+    />
+    <button class="button" type="submit">Send</button>
+  </form>
+</div>
