@@ -1,1 +1,8 @@
-<app-pick-username></app-pick-username>
+<div id="app">
+  <app-chat *ngIf="usernameAlreadySelected; else elseBlock"></app-chat>
+  <ng-template #elseBlock>
+    <app-pick-username
+      (addUsername)="onUserSelection($event)"
+    ></app-pick-username>
+  </ng-template>
+</div>

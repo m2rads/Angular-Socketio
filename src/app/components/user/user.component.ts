@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -11,15 +10,13 @@ export class UserComponent implements OnInit {
   @Input() user: User;
   @Input() selected: Boolean;
   status: String;
-  constructor(private socket: Socket) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.ConnectionStatus();
   }
 
-  onClick(): void {
-    this.socket.emit('select');
-  }
+  onClick(): void {}
 
   ConnectionStatus(): void {
     this.user.connected ? (this.status = 'online') : (this.status = 'offline');
