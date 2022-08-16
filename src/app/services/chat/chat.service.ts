@@ -1,11 +1,44 @@
-import { io } from 'socket.io-client';
+import { Injectable } from '@angular/core';
+import { Observable, Subscriber } from 'rxjs';
+import { io, Socket } from 'socket.io-client';
 
-const URL = 'http://localhost:8080';
-const socket = io(URL, { autoConnect: false });
+@Injectable({
+  providedIn: 'root',
+})
+export class ChatService {
+  socket: Socket;
+  URL: any = 'http://localhost:8081';
 
-// good for development, any event recieved will be printed out to the console
-socket.onAny((event, ...args) => {
-  console.log(event, args);
-});
+  constructor() {
+    this.socket = io(this.URL, { autoConnect: false });
+    this.socket.onAny((event, ...args) => {
+      console.log(event, args);
+    });
+  }
 
-export default socket;
+  initConnetion(username: string): void {
+    console.log(username);
+    this.socket.auth = { username };
+    this.socket.connect();
+  }
+
+  destroyConnection(event: string): void {
+    this.socket.off(event);
+  }
+
+  socketId(): any {
+    return this.socket.id;
+  }
+
+  listen(event: string): Observable<any> {
+    return new Observable((subscriber) => {
+      this.socket.on(event, (data) => {
+        subscriber.next(data);
+      });
+    });
+  }
+
+  emit(event: string, data: any): void {
+    this.socket.emit(event, data);
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import socket from './services/chat/chat.service';
+import { ChatService } from './services/chat/chat.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +10,10 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'angular-chat-app';
   usernameAlreadySelected: Boolean = false;
 
-  // @Output() username: String;
-
-  constructor() {}
+  constructor(private _chatSerivce: ChatService) {}
 
   ngOnInit(): void {
-    socket.on('connect_error', (err) => {
+    this._chatSerivce.listen('connect_error').subscribe((err) => {
       if (err.message === 'invalid username') {
         this.usernameAlreadySelected = false;
       }
@@ -23,13 +21,11 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    socket.off('connect_error');
+    this._chatSerivce.destroyConnection('connect_error');
   }
 
   onUserSelection(username: string) {
     this.usernameAlreadySelected = true;
-    console.log(username);
-    socket.auth = { username };
-    socket.connect();
+    this._chatSerivce.initConnetion(username);
   }
 }
