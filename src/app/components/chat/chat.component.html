@@ -1,7 +1,19 @@
 <div>
   <!-- <app-user *ngFor="let user of users; index as i"> {{ user.name }}</app-user> -->
-  <div class="'left-panel">
-    <!-- <app-user></app-user> -->
-    <p>I am a user</p>
+  <div class="left-panel">
+    <app-user
+      *ngFor="let user of users; index as i"
+      [user]="user"
+      [selected]="selectedUser === user"
+      (select)="onSelectUser(user)"
+    ></app-user>
+  </div>
+
+  <div class="right-panel">
+    <app-message-panel
+      *ngIf="selectedUser"
+      [user]="selectedUser"
+      (input)="onMessage($event)"
+    ></app-message-panel>
   </div>
 </div>

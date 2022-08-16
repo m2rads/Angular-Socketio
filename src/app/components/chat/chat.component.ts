@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-// import { User } from 'src/app/models/user.model';
 import { ChatService } from 'src/app/services/chat/chat.service';
 
 @Component({
@@ -34,7 +33,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     };
 
     this._chatService.listen('users').subscribe((users) => {
-      console.log('here are the users', users);
+      // console.log('here are the users', users);
       users.forEach((user) => {
         console.log('indivisuals', user);
         user.self = user.userID === this._chatService.socketId();
@@ -90,6 +89,22 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._chatService.destroyConnection('user connected');
     this._chatService.destroyConnection('user disconnected');
     this._chatService.destroyConnection('private message');
+  }
+
+  onMessage(content: any): void {
+    if (!content.type) {
+      console.log('this is content', content);
+      if (this.selectedUser) {
+        this._chatService.emit('private message', {
+          content,
+          to: this.selectedUser.userID,
+        });
+        this.selectedUser.messages.push({
+          content,
+          fromSelf: true,
+        });
+      }
+    }
   }
 
   onSelectUser(user: any): void {
