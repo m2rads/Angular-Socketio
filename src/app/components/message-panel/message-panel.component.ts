@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user.model';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-message-panel',
@@ -7,15 +8,21 @@ import { User } from 'src/app/models/user.model';
   styleUrls: ['./message-panel.component.css'],
 })
 export class MessagePanelComponent implements OnInit {
-  @Input() user: User;
-  input: String = '';
+  @Input() user: any;
+  @Output() input = new EventEmitter<any>();
 
-  constructor() {}
+  messageForm = this.formBuilder.group({
+    input: '',
+  });
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.input = '';
+    let content = this.messageForm.value.input;
+    this.messageForm.reset();
+    this.input.emit(content);
+    // console.log(content);
   }
 
   displaySender(message: any, index: any): any {

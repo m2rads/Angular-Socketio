@@ -1,9 +1,9 @@
 <div>
   <div class="header">
-    <app-status-icon [connected]="user.connected">{{
-      user.username
-    }}</app-status-icon>
+    <app-status-icon [connected]="user.connected"></app-status-icon
+    >{{ user.username }}
   </div>
+
   <ul class="messages">
     <li *ngFor="let message of user.messages; index as i" class="message">
       <div *ngIf="displaySender(message, i)" class="sender">
@@ -13,12 +13,13 @@
     </li>
   </ul>
 
-  <form class="form" (submit)="onSubmit()">
+  <form class="form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
     <textarea
       name="input"
+      formControlName="input"
       placeholder="Type a message..."
       class="input"
     ></textarea>
-    <button [disabled]="!isValid" class="send-button">Send</button>
+    <button class="send-button" type="submit">Send</button>
   </form>
 </div>
