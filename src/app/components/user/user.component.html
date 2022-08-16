@@ -3,9 +3,10 @@
     <div class="name">
       {{ user.username }} {{ user.self ? " (yourself)" : "" }}
     </div>
-  </div>
-  <div class="status">
-    <app-status-icon [connected]="user.connected"></app-status-icon>{{ status }}
+    <div class="status">
+      <app-status-icon [connected]="user.connected"></app-status-icon
+      >{{ status }}
+    </div>
   </div>
   <div *ngIf="user.hasNewMessages" class="new-messages">!</div>
 </div>
